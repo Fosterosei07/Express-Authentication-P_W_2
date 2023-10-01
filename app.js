@@ -19,11 +19,11 @@ app.use(expressLayouts);
 app.use('/', userRoute);
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
+app.get('/ghana', (req, res) => {
     res.send('hello')
 })
 
-
 app.listen(port, () => {
     console.log(`server connected on http://localhost:${port}`);
+    dbConnect.authenticate()
 })
