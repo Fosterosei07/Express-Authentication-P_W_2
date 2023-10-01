@@ -1,6 +1,8 @@
 const express = require('express');
-const dotEnv = require('dotenv')
-// const sequelize = require('sequelize')
+const dotEnv = require('dotenv');
+const userRoute = require('./routes/userRoutes')
+const expressLayouts =require('express-ejs-layouts')
+const ejs = require('ejs');
 
 dotEnv.config();
 const dbConnect = require('./dbConnect')
@@ -10,6 +12,12 @@ const port = process.env.port || 7000
 
 
 const app = express();
+
+app.set('view engine','ejs');
+app.use(expressLayouts);
+
+app.use('/', userRoute);
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
     res.send('hello')
